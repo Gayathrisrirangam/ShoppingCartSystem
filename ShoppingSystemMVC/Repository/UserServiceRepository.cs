@@ -26,10 +26,23 @@ namespace ShoppingSystemMVC.Repository
             return client.PostAsJsonAsync(url, content).Result;
         }
 
-        public HttpResponseMessage DeleteResponse(string url,int id) 
-        { 
+        public HttpResponseMessage DeleteResponse(string url, int id)
+        {
             return client.DeleteAsync(url + id.ToString()).Result;
         }
+
+        //TO update 
+        #region TO UPDATE
+        public HttpResponseMessage UpdateReposne(string url, int id)
+        {
+            return client.GetAsync(url + id.ToString()).Result;
+        }
+
+        public HttpResponseMessage EditResponse(string url, object content)
+        {
+            return client.PostAsJsonAsync(url, content).Result;
+        }
+        #endregion
 
         public HttpResponseMessage VerifyLogin(string url, object model)
         {

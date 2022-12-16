@@ -174,7 +174,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserviewController.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,8 +198,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\bg.jpg" />
     <Content Include="Images\BGimg.jpg" />
+    <Content Include="Images\cat.jpg" />
+    <Content Include="Images\catge.jpg" />
+    <Content Include="Images\hom.jpg" />
+    <Content Include="Images\kl.jpg" />
     <Content Include="Images\log.jpg" />
+    <Content Include="Images\mb.jpg" />
+    <Content Include="Images\pic.jpg" />
+    <Content Include="Images\purp.jpg" />
+    <Content Include="Images\sk.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -251,12 +259,13 @@
     <Content Include="Views\CategoryView\CategoryDetails.cshtml" />
     <Content Include="Views\Userview\RegisterdUsers.cshtml" />
     <Content Include="Views\Userview\Registration.cshtml" />
-    <Content Include="Views\Login\LoginUser.cshtml" />
-    <Content Include="Views\Login\LoginUserZ.cshtml" />
     <Content Include="Views\Userview\DeleteResponse.cshtml" />
+    <Content Include="Views\Userview\HomePage.cshtml" />
+    <Content Include="Views\Userview\LoginUserZ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
