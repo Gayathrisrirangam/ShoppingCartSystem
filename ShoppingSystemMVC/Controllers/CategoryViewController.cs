@@ -31,5 +31,19 @@ namespace ShoppingSystemMVC.Controllers
             }
             return View(Category);
         }
+
+        public async Task<ActionResult> ItemDetails()
+        {
+            List<ItemViewModel> Item = new List<ItemViewModel>();
+            var service = new UserServiceRepository();
+            {
+                using (var response = service.GetResponse("Item"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    Item = JsonConvert.DeserializeObject<List<ItemViewModel>>(apiResponse);
+                }
+            }
+            return View(Item);
+        }
     }
 }

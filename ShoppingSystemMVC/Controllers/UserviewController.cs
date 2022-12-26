@@ -36,7 +36,7 @@ namespace ShoppingSystemMVC.Controllers
 
 
         //adding users through MVC
-        #region
+        #region REGISTRATION
         public async Task<ActionResult> Registration(UserViewModel userView)
         {
             if (ModelState.IsValid)
@@ -47,11 +47,10 @@ namespace ShoppingSystemMVC.Controllers
                     using (var response = service.PostResponse("users", userView))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
-                        user = JsonConvert.DeserializeObject<UserViewModel>(apiResponse);
-
+                        //user = JsonConvert.DeserializeObject<UserViewModel>(apiResponse);
                     }
                 }
-                return RedirectToAction("RegisterdUser");
+                return RedirectToAction("LoginUserZ");
             }
             return View(userView);
         }
@@ -73,7 +72,7 @@ namespace ShoppingSystemMVC.Controllers
         #endregion
 
         //Starting Page
-        #region
+        #region HOMEPAGE
         public ActionResult HomePage()
         {
             return View();
@@ -84,6 +83,8 @@ namespace ShoppingSystemMVC.Controllers
         {
             return View();
         }
+
+        #region LOGINUSER
         //This Action method is used to display Login View
         public ActionResult LoginUser()
         {
@@ -121,16 +122,19 @@ namespace ShoppingSystemMVC.Controllers
             {
 
             }
-            return RedirectToAction("CategoryView", "CategoryDetails");
+            return RedirectToAction("CategoryDetails", "CategoryView");
 
         }
 
+        #endregion
         public ActionResult LoginUserZ()
         {
             return View();
         }
 
         //This Post Method will validate the userName & Password valid or not using WebAPI
+
+        #region USER LOGIN
         [Route("")]
         [HttpPost]
         public ActionResult LoginUserZ(UserViewModel Ur)
@@ -160,5 +164,6 @@ namespace ShoppingSystemMVC.Controllers
             return RedirectToAction("CategoryDetails", "CategoryView");
 
         }
+        #endregion
     }
 }

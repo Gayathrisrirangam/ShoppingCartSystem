@@ -53,6 +53,8 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -180,10 +182,47 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Cart.cs">
+      <DependentUpon>ShoppingCartSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>ShoppingCartSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Item.cs">
+      <DependentUpon>ShoppingCartSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ItemViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Marchant.cs">
+      <DependentUpon>ShoppingCartSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>ShoppingCartSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Payment.cs">
+      <DependentUpon>ShoppingCartSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShoppingCartSystem.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoppingCartSystem.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShoppingCartSystem.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoppingCartSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShoppingCartSystem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoppingCartSystem.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>ShoppingCartSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\UserServiceRepository.cs" />
@@ -209,8 +248,25 @@
     <Content Include="Images\pic.jpg" />
     <Content Include="Images\purp.jpg" />
     <Content Include="Images\sk.jpg" />
+    <Content Include="Models\ShoppingCartSystem.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShoppingCartSystem.edmx</DependentUpon>
+      <LastGenOutput>ShoppingCartSystem.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ShoppingCartSystem.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShoppingCartSystem.edmx</DependentUpon>
+      <LastGenOutput>ShoppingCartSystem.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\ShoppingCartSystem.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShoppingCartSystem.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ShoppingCartSystem.edmx.diagram">
+      <DependentUpon>ShoppingCartSystem.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -261,7 +317,8 @@
     <Content Include="Views\Userview\Registration.cshtml" />
     <Content Include="Views\Userview\DeleteResponse.cshtml" />
     <Content Include="Views\Userview\HomePage.cshtml" />
-    <Content Include="Views\Userview\LoginUserZ.cshtml" />
+    <Content Include="Views\Userview\LoginUser.cshtml" />
+    <Content Include="Views\CategoryView\ItemDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -279,6 +336,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
