@@ -125,42 +125,37 @@ namespace ShoppingSystemMVC.Controllers
         }
         #endregion
 
-        public ActionResult loginHomepage()
+        // GET: Login
+        [HttpGet]
+        public ActionResult Login()
         {
             return View();
         }
-
-        #region LOGINUSER
-        //This Action method is used to display Login View
-        public ActionResult LoginUser()
-        {
-            return View();
-        }
-
         [HttpPost]
-        [Route("")]
-        public async Task<ActionResult> LoginUser(LoginModel login)
+       // [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login([Bind(Include = "EmailID, Password")]LoginModel login)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    LoginModel newUser = new LoginModel();
+                    UserViewModel newUser = new UserViewModel();
                     var service = new UserServiceRepository();
                     {
-                        using (var response = service.VerifyLogin("api/Login", login))
+                        using (var response = service.PostResponse("Login", login))
                         {
                             string apiResponse = await response.Content.ReadAsStringAsync();
-                            newUser = JsonConvert.DeserializeObject<LoginModel>(apiResponse);
+                            newUser = JsonConvert.DeserializeObject<UserViewModel>(apiResponse);
                         }
                     }
                     if (newUser != null)
                     {
-                        ViewBag.message = "Login Success";
+                        FormsAuthentication.SetAuthCookie(login.EmailID, false);
+                        return RedirectToAction("CategoryDetails", "CategoryView");
                     }
                     else
                     {
-                        ViewBag.message = "incorrect";
+                        ViewBag.ErrorMessage = "The Email or Password provided is incorrect";
                     }
                 }
             }
@@ -168,60 +163,18 @@ namespace ShoppingSystemMVC.Controllers
             {
 
             }
-            return RedirectToAction("CategoryDetails", "CategoryView");
-
-        }
-
-        #endregion
-        public ActionResult LoginUserZ()
-        {
             return View();
-        }
-
-        //This Post Method will validate the userName & Password valid or not using WebAPI
-
-        #region USER LOGIN
-        [Route("")]
-        [HttpPost]
-        public ActionResult LoginUserZ(UserViewModel Ur)
-        {
-            if (!(string.IsNullOrEmpty(Ur.EmailID) || string.IsNullOrEmpty(Ur.Password)))
-            {
-
-                if (!ModelState.IsValid)
-                {
-                    HttpClient hc = new HttpClient();
-                    hc.BaseAddress = new Uri("https://localhost:44335/api/Login"); // URL for Login WebAPI
-                    var checkLoginDetails = hc.PostAsJsonAsync<UserViewModel>("Login", Ur);//Asynchronosly passing the values in Json Format to API
-                    var checkrec = checkLoginDetails.Result;//Checking the User EmailID & Password 
-
-                    //Condition for Successfull Login We need to Navigate to Flght Seach Page 
-                    if ((int)checkrec.StatusCode == 200)
-                    {
-                        ViewBag.message = "Login Success!!";
-                    }
-                    //Condition for Invalid User Name & Password
-                    if ((int)checkrec.StatusCode == 426)
-                    {
-                        ViewBag.message = "Invalid EmailID & Password";
-                    }
-                }
-            }
-            return RedirectToAction("CategoryDetails", "CategoryView");
 
         }
-        #endregion
-        //Logoff user
-        #region LOGOFF 
+
         public ActionResult LogOff()
         {
 
             //Session.Remove("UserID");
 
             FormsAuthentication.SignOut();
-            return RedirectToAction("LoginUser");
+            return RedirectToAction("Login");
 
         }
-        #endregion
     }
 }

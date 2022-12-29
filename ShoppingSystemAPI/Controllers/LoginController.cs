@@ -21,29 +21,20 @@ namespace ShoppingSystemAPI.Controllers
 
         [HttpPost]
         [Route("")]
-        public IHttpActionResult VerifyLogin(Loginuser objlogin)
+        public IHttpActionResult VerifyLogin(Loginuser login)
         {
             User user = null;
             try
             {
-                user = _Loginrepo.VerifyLogin(objlogin.EmailID, objlogin.Password);
-
-                if (user != null)
-                {
-                    //return NotFound();
-                    return Ok(user);
-
-                }
-
+                user = _Loginrepo.VerifyLogin(login.EmailID, login.Password);
+                if (user == null)
+                    return NotFound();
             }
             catch (Exception ex)
             {
-
+                throw ex;
             }
-
-            //return Ok(customer);
-            return NotFound();
-
+            return Ok(user);
         }
     }
 }
