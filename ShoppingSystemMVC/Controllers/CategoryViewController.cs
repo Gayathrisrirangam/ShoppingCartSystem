@@ -59,5 +59,28 @@ namespace ShoppingSystemMVC.Controllers
             }
             return View(Cart);
         }
+
+        //adding through MVC
+        #region ADD TO CART
+        public async Task<ActionResult> AddCart(CartViewModel cartView)
+        {
+            if (ModelState.IsValid)
+            {
+                CartViewModel cart = new CartViewModel();
+                var service = new UserServiceRepository();
+                {
+                    using (var response = service.PostResponse("Cart", cartView))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        //user = JsonConvert.DeserializeObject<UserViewModel>(apiResponse);
+                    }
+                }
+              //  return RedirectToAction("CartDetails");
+            }
+            return View(cartView);
+        }
+        #endregion
+
+
     }
 }

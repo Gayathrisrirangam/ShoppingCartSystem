@@ -5,7 +5,6 @@
 }
 
 <h2>RegisterdUsers</h2>
-
 <p>
     @Html.ActionLink("Create New", "Registration")
 </p>
@@ -59,7 +58,7 @@
             @Html.DisplayFor(modelItem => item.Password)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditUser", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "DeleteResponse", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>

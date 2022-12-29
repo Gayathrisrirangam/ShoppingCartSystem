@@ -37,19 +37,7 @@ namespace ShoppingSystemMVC.Controllers
 
         //UPDATE USER
         #region UPDATE USER
-        public async Task<ActionResult> EditUser(int Id)
-        {
-            UserViewModel user = new UserViewModel();
-            var service = new UserServiceRepository();
-            {
-                using (var response = service.UpdateReposne("Users/", Id))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    user = JsonConvert.DeserializeObject<UserViewModel>(apiResponse);
-                }
-            }
-            return View(user);
-        }
+       
         #endregion
 
 
@@ -71,6 +59,46 @@ namespace ShoppingSystemMVC.Controllers
                 return RedirectToAction("LoginUser");
             }
             return View(userView);
+        }
+        #endregion
+
+        //update user
+        #region UPDATE USER
+        // GET: users/Edit/5
+        //[Authorize(Users = "Ras@gmail.com")]
+        public async Task<ActionResult> Edit(int id)
+        {
+            UserViewModel user = new UserViewModel();
+            var service = new UserServiceRepository();
+            {
+                using (var response = service.GetResponse("Users" + "/" + id))
+                {
+                    string apiResponse
+                        = await response.Content.ReadAsStringAsync();
+                    user
+                        = JsonConvert.DeserializeObject<UserViewModel>(apiResponse);
+                }
+            }
+            return View(user);
+        }
+
+        // POST: users/Edit/5
+        //[Consumes("application/json")]
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(UserViewModel user)
+        {
+            UserViewModel updatedUser = new UserViewModel();
+            var service = new UserServiceRepository();
+            {
+                using (var response = service.PutResponse("users"
+                + "/" + user.ProfileID, user))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    //updatedUser = JsonConvert.DeserializeObject<UserViewModel>(apiResponse);
+                }
+            }
+            return RedirectToAction("RegisterdUsers");
         }
         #endregion
 

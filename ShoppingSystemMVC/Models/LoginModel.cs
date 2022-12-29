@@ -20,6 +20,5 @@ namespace ShoppingSystemMVC.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-
     }
 }

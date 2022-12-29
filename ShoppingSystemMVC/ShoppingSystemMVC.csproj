@@ -302,7 +302,8 @@
     <Content Include="Views\Userview\LoginUser.cshtml" />
     <Content Include="Views\CategoryView\ItemDetails.cshtml" />
     <Content Include="Views\CategoryView\CartDetails.cshtml" />
-    <Content Include="Views\Userview\EditUser.cshtml" />
+    <Content Include="Views\CategoryView\AddCart.cshtml" />
+    <Content Include="Views\Userview\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

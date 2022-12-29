@@ -8,18 +8,24 @@ namespace ShoppingSystemAPI.Repository
 {
     public class LoginRepo : Ilogin
     {
-        Entities _LoginEntities = null;
-        public User VerifyLogin(string EmailID, string Password)
+        private readonly Entities _LoginEntities;
+
+        //Constructor Dependancy injection
+        public LoginRepo(Entities loginentities)
+        {
+            this._LoginEntities = loginentities;
+        }
+        public User VerifyLogin(string emailID, string password)
         {
             User user = null;
             try
             {
-                var checkValidUser = _LoginEntities.Users.Where(m => m.EmailID == EmailID && m.Password == Password).FirstOrDefault();
-                if (checkValidUser != null)
-                {
-                    user = checkValidUser;
-                }
+                var userFound = _LoginEntities.Users.Where(u => u.EmailID == emailID && u.Password == password).SingleOrDefault();
 
+                if (userFound != null)
+                {
+                    user = userFound;
+                }
                 else
                 {
                     user = null;
@@ -27,14 +33,9 @@ namespace ShoppingSystemAPI.Repository
             }
             catch (Exception ex)
             {
+                throw ex;
             }
             return user;
         }
-
-        public LoginRepo(Entities loginentities)
-        {
-            this._LoginEntities = loginentities;
-        }
-
     }
 }

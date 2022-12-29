@@ -33,14 +33,9 @@ namespace ShoppingSystemMVC.Repository
 
         //TO update 
         #region TO UPDATE
-        public HttpResponseMessage UpdateReposne(string url, int id)
+        public HttpResponseMessage PutResponse(string url, object model)
         {
-            return client.GetAsync(url + id.ToString()).Result;
-        }
-
-        public HttpResponseMessage EditResponse(string url, object content)
-        {
-            return client.PostAsJsonAsync(url, content).Result;
+            return client.PutAsJsonAsync(url, model).Result;
         }
         #endregion
 
