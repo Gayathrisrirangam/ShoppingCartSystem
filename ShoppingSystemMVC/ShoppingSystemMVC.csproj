@@ -173,18 +173,16 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserviewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cart.cs">
       <DependentUpon>ShoppingCartSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>ShoppingCartSystem.tt</DependentUpon>
     </Compile>
@@ -195,7 +193,6 @@
     </Compile>
     <Compile Include="Models\ItemViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Marchant.cs">
       <DependentUpon>ShoppingCartSystem.tt</DependentUpon>
     </Compile>
@@ -237,13 +234,18 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\all.jpg" />
     <Content Include="Images\bg.jpg" />
     <Content Include="Images\BGimg.jpg" />
     <Content Include="Images\cat.jpg" />
     <Content Include="Images\catge.jpg" />
+    <Content Include="Images\cop.JPG" />
+    <Content Include="Images\copy.JPG" />
+    <Content Include="Images\final.JPG" />
     <Content Include="Images\hom.jpg" />
     <Content Include="Images\kl.jpg" />
     <Content Include="Images\log.jpg" />
+    <Content Include="Images\login.jpg" />
     <Content Include="Images\mb.jpg" />
     <Content Include="Images\pic.jpg" />
     <Content Include="Images\purp.jpg" />
@@ -292,26 +294,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\CategoryView\CategoryDetails.cshtml" />
     <Content Include="Views\Userview\RegisterdUsers.cshtml" />
     <Content Include="Views\Userview\Registration.cshtml" />
@@ -319,6 +301,8 @@
     <Content Include="Views\Userview\HomePage.cshtml" />
     <Content Include="Views\Userview\LoginUser.cshtml" />
     <Content Include="Views\CategoryView\ItemDetails.cshtml" />
+    <Content Include="Views\CategoryView\CartDetails.cshtml" />
+    <Content Include="Views\Userview\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

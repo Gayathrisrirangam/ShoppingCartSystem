@@ -3,36 +3,78 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title -  P A C T</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <title>@ViewBag.Title - P A C T</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <!-- Bootstrap and JQuery CDNs -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("P A C T", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <!-- Navbar content -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            @*<a class="navbar-brand" href="#">Hidden brand</a>*@
+            @Html.ActionLink("P A C T", "Index", "Home", null,
+           new { @class = "navbar-brand font-weight-bold" })
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    @*<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>*@
+                    @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item active">
+                    @*<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>*@
+                    @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item active">
+                    @*<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>*@
+                    @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                @{
+                    if (Request.IsAuthenticated)
+                    {
+                        <li class="nav-item active">@Html.ActionLink("List Of Users", "RegisterdUsers", "Userview", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item active">
+                            @Html.ActionLink("Welcome " + User.Identity.Name, "", "", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item active">@Html.ActionLink("LogOff", "LogOff", "Userview", null, new { @class = "nav-link" })</li>
+                    }
+                    else
+                    {
+                        <li class="nav-item active">
+                            @Html.ActionLink("Register", "Registration", "Userview", null, new { @class = "nav-link" })
+                        </li>
+                        @*class="disabled"*@
+                        <li class="nav-item active">
+                            @Html.ActionLink("Login", "LoginUser", "Userview", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item active">
+                            @Html.ActionLink("Cart", "CartDetails", "CategoryView", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                }
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
-        @RenderBody()
+        <div>
+            @RenderBody()
+        </div>
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year -  P A C T</p>
+            <p class="text-right text-info font-weight-bold">&copy; copy right to PACT @DateTime.Now.Year - P A C T</p>
         </footer>
     </div>
 

@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ShoppingSystemMVC.Controllers
 {
@@ -34,6 +35,23 @@ namespace ShoppingSystemMVC.Controllers
         }
         #endregion
 
+        //UPDATE USER
+        #region UPDATE USER
+        public async Task<ActionResult> EditUser(int Id)
+        {
+            UserViewModel user = new UserViewModel();
+            var service = new UserServiceRepository();
+            {
+                using (var response = service.UpdateReposne("Users/", Id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    user = JsonConvert.DeserializeObject<UserViewModel>(apiResponse);
+                }
+            }
+            return View(user);
+        }
+        #endregion
+
 
         //adding users through MVC
         #region REGISTRATION
@@ -50,7 +68,7 @@ namespace ShoppingSystemMVC.Controllers
                         //user = JsonConvert.DeserializeObject<UserViewModel>(apiResponse);
                     }
                 }
-                return RedirectToAction("LoginUserZ");
+                return RedirectToAction("LoginUser");
             }
             return View(userView);
         }
@@ -162,6 +180,18 @@ namespace ShoppingSystemMVC.Controllers
                 }
             }
             return RedirectToAction("CategoryDetails", "CategoryView");
+
+        }
+        #endregion
+        //Logoff user
+        #region LOGOFF 
+        public ActionResult LogOff()
+        {
+
+            //Session.Remove("UserID");
+
+            FormsAuthentication.SignOut();
+            return RedirectToAction("LoginUser");
 
         }
         #endregion
