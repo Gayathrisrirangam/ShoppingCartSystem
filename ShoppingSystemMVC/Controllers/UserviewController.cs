@@ -56,7 +56,7 @@ namespace ShoppingSystemMVC.Controllers
                         //user = JsonConvert.DeserializeObject<UserViewModel>(apiResponse);
                     }
                 }
-                return RedirectToAction("LoginUser");
+                return RedirectToAction("Login");
             }
             return View(userView);
         }
