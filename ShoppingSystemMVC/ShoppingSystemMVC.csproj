@@ -299,7 +299,6 @@
     <Content Include="Views\Userview\Registration.cshtml" />
     <Content Include="Views\Userview\DeleteResponse.cshtml" />
     <Content Include="Views\Userview\HomePage.cshtml" />
-    <Content Include="Views\Userview\LoginUser.cshtml" />
     <Content Include="Views\CategoryView\ItemDetails.cshtml" />
     <Content Include="Views\CategoryView\CartDetails.cshtml" />
     <Content Include="Views\CategoryView\AddCart.cshtml" />
