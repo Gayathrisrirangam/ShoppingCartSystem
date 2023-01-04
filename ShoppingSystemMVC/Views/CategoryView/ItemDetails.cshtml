@@ -70,9 +70,11 @@
             @Html.DisplayFor(modelItem => item.ItemPrice)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("AddToCart", "ADDCART", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("AddToCart", "ADDCART", new { /* id=item.PrimaryKey */ }) 
+
+           @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
         </td>
     </tr>
 }

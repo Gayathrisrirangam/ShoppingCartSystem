@@ -15,10 +15,10 @@
     }
 </style>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>LoginModel</h4>
         <hr />
@@ -54,3 +54,5 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<h3>@ViewBag.ErrorMessage</h3>
